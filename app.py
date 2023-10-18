@@ -73,7 +73,7 @@ if uploaded_file is not None:
     audio_bytes = uploaded_file.read()
     with open(os.path.join(upload_path,uploaded_file.name),"wb") as f:
         f.write((uploaded_file).getbuffer())
-    with st.spinner(f"Processing Audio ... 💫"):
+    with st.spinner("Processing Audio ... 💫"):
         output_audio_file = uploaded_file.name.split('.')[0] + '.mp3'
         output_audio_file = to_mp3(uploaded_file, output_audio_file, upload_path, download_path)
         audio_file = open(os.path.join(download_path,output_audio_file), 'rb')
@@ -88,7 +88,7 @@ if uploaded_file is not None:
         whisper_model_type = st.radio("Please choose your model type", ('Tiny', 'Base', 'Small', 'Medium', 'Large'))
 
     if st.button("Generate Transcript"):
-        with st.spinner(f"Generating Transcript... 💫"):
+        with st.spinner("Generating Transcript... 💫"):
             transcript = process_audio(str(os.path.abspath(os.path.join(download_path,output_audio_file))), whisper_model_type.lower())
 
             output_txt_file = str(output_audio_file.split('.')[0]+".txt")
